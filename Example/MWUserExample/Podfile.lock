@@ -1,0 +1,18 @@
+PODS:
+  - ReactiveCocoa (2.2.3):
+    - ReactiveCocoa/Core
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/Core (2.2.3):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.2.3)
+  - UICKeyChainStore (1.0.4)
+
+DEPENDENCIES:
+  - ReactiveCocoa (~> 2.2.3)
+  - UICKeyChainStore
+
+SPEC CHECKSUMS:
+  ReactiveCocoa: b3cb6ebd50f1a0f2e39c6fd7ce3c428b6efcb22b
+  UICKeyChainStore: b42c6252b8bfd7fbf6326668467572b6b231e11a
+
+COCOAPODS: 0.29.0
