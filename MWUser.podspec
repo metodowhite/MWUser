@@ -1,4 +1,8 @@
-#
+
+
+
+
+
 #  Be sure to run `pod spec lint MWUser.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
@@ -40,7 +44,7 @@ Pod::Spec.new do |s|
   #
 
   s.license      = 'MIT (example)'
-  # s.license      = { :type => 'MIT', :file => 'FILE_LICENSE' }
+  #s.license      = { :type => 'MIT', :file => 'FILE_LICENSE' }
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -62,11 +66,11 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  # s.platform     = :ios, '7.0'
+  s.platform     = :ios, '7.0'
 
   #  When using multiple platforms
-  # s.ios.deployment_target = '5.0'
-  # s.osx.deployment_target = '10.7'
+  # s.ios.deployment_target = '7.0'
+  # s.osx.deployment_target = '10.9'
 
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -86,8 +90,8 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = 'MWUser', 'MWUser/MWUser.{h,m}'
-  s.exclude_files = 'Classes/Exclude'
+  s.source_files  = 'MWUser', 'MWUser/**/*.{h,m}'
+  s.exclude_files = 'Example'
 
   # s.public_header_files = 'Classes/**/*.h'
 
@@ -128,7 +132,9 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   # s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
-  
+  s.xcconfig     = { 'HEADER_SEARCH_PATHS' => '"$(PODS_ROOT)/Parse/Parse.framework/Headers"' }
+
+  s.dependency 'Parse', '~> 1.2.18'
   s.dependency 'ReactiveCocoa', '~> 2.2.3'
   s.dependency 'UICKeyChainStore', '~> 1.0.4'
 

@@ -1,13 +1,14 @@
 //
 //  MWGUser.m
-//  Mowgli
 //
-//  Created by Cristian Díaz on 02/02/14.
+//  Created by Cristian Díaz on 18/02/14.
 //  Copyright (c) 2014 metodowhite. All rights reserved.
 //
 
 #import "MWGUser.h"
 #include <UICKeyChainStore/UICKeyChainStore.h>
+#include <Parse/Parse.h>
+
 @import Social;
 @import Accounts;
 
