@@ -8,5 +8,5 @@ MWUser
 
 ```ruby
 platform :ios, '7.0'
-pod "MWUser", "~> 0.0.1"
+pod 'MWUser', :podspec => 'https://raw2.github.com/metodowhite/MWUser/master/MWUser.podspec'
 ```
