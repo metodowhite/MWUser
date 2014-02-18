@@ -1,0 +1,31 @@
+PODS:
+  - Facebook-iOS-SDK (3.12.0)
+  - MWUser (0.0.1):
+    - Parse (~> 1.2.18)
+    - ReactiveCocoa (~> 2.2.3)
+    - UICKeyChainStore (~> 1.0.4)
+  - Parse (1.2.18):
+    - Facebook-iOS-SDK (~> 3.11)
+  - ReactiveCocoa (2.2.3):
+    - ReactiveCocoa/Core
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/Core (2.2.3):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.2.3)
+  - UICKeyChainStore (1.0.4)
+
+DEPENDENCIES:
+  - MWUser (from `https://raw2.github.com/metodowhite/MWUser/master/MWUser.podspec`)
+
+EXTERNAL SOURCES:
+  MWUser:
+    :podspec: https://raw2.github.com/metodowhite/MWUser/master/MWUser.podspec
+
+SPEC CHECKSUMS:
+  Facebook-iOS-SDK: c09f7d80db5c48170ff834bc03ebe774c49d1f5b
+  MWUser: 12d8507026694b7eca845c8d72c974a2a16ea487
+  Parse: 6dd57f2af9f89dc6facc755cec4e96f8b739b1fb
+  ReactiveCocoa: b3cb6ebd50f1a0f2e39c6fd7ce3c428b6efcb22b
+  UICKeyChainStore: b42c6252b8bfd7fbf6326668467572b6b231e11a
+
+COCOAPODS: 0.29.0

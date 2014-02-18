@@ -7,7 +7,7 @@
 
 #import "MWGUser.h"
 #include <UICKeyChainStore/UICKeyChainStore.h>
-#include <Parse/Parse.h>
+#include <Parse.h>
 
 @import Social;
 @import Accounts;

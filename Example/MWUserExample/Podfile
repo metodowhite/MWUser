@@ -1,0 +1,2 @@
+platform :ios, '7.0'
+pod 'MWUser', :podspec => 'https://raw2.github.com/metodowhite/MWUser/master/MWUser.podspec'
