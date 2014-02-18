@@ -11,8 +11,11 @@
 @interface MWGUser: NSObject<UIAlertViewDelegate>
 
 @property (strong, nonatomic)RACSignal *loggingSignal;
+
+-(void)loginRegisterViaTwitter;
+-(void)loginRegisterViafacebook;
+
 +(id)sharedMWGUser;
--(void)login;
 
 
 @end

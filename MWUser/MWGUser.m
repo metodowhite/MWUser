@@ -13,11 +13,12 @@
 @import Accounts;
 
 @interface MWGUser ()
-@property(nonatomic, strong) ACAccountStore *accountStore;
-@property(nonatomic, strong) ACAccountType *accountType;
-@property(nonatomic, strong) NSArray *availableTwitterAccounts;
-@property(nonatomic, strong) ACAccount *userAccountInKeyChain;
-@property(nonatomic, strong) NSString *uuid;
+@property(strong, nonatomic) ACAccountStore *accountStore;
+@property(strong, nonatomic) ACAccountType *accountType;
+@property(strong, nonatomic) NSArray *availableTwitterAccounts;
+@property(strong, nonatomic) ACAccount *userAccountInKeyChain;
+@property(strong, nonatomic) NSString *uuid;
+@property(strong, nonatomic) NSString *keychainServiceName;
 @end
 
 @implementation MWGUser
@@ -31,7 +32,25 @@
 	return instance;
 }
 
-- (void)login {
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+		#warning Set Service for Store, normally Reverse domain naming.
+		self.keychainServiceName = @"com.yoursite";
+    }
+    return self;
+}
+
+- (void)loginRegisterViaTwitter {
+    if ([self checkIfUserExistsInKeychain]) {
+        [self loginParseUser];
+    } else {
+        [self registerViaTwitter];
+    }
+}
+
+- (void)loginRegisterViafacebook {
     if ([self checkIfUserExistsInKeychain]) {
         [self loginParseUser];
     } else {
@@ -79,12 +98,41 @@
     }];
 }
 
+- (void)registerViaFacebook {
+    self.accountStore = [ACAccountStore new];
+    self.accountType = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+    
+	#warning Required ACFacebookAppIdKey if special permissions asked.
+	NSDictionary *options = @{ACFacebookAppIdKey:@"APP_ID_KEY",
+                              ACFacebookPermissionsKey: @[@"email"]};
+	
+    [self.accountStore requestAccessToAccountsWithType:_accountType options:options completion:^(BOOL granted, NSError *error) {
+		if (granted) {
+			NSArray *accountsArr = [_accountStore accountsWithAccountType:_accountType];
+			
+			if ([accountsArr count]) {
+				self.userAccountInKeyChain = [accountsArr lastObject];
+				[self saveUserInKeyChain];
+			}
+		} else {
+			dispatch_async(dispatch_get_main_queue(), ^(void) {
+				NSLog(@"%@",error.description);
+				if([error code]== ACErrorAccountNotFound) {
+					[self throwAlertWithTitle:@"Facebook account not found." message:@"Please setup your account in settings app."];
+				} else {
+					[self throwAlertWithTitle:@"Error" message:@"Access to Facebook account was not granted."];
+				}
+			});
+		}
+	}];
+}
+
 #pragma mark - Keychain methods
 
 - (BOOL)checkIfUserExistsInKeychain {
-    if([[UICKeyChainStore keyChainStoreWithService:@"com.metodowhite"] stringForKey:@"uuid"] != nil) {
-        self.uuid = [[UICKeyChainStore keyChainStoreWithService:@"com.metodowhite"] stringForKey:@"uuid"];
-        self.userAccountInKeyChain = [NSKeyedUnarchiver unarchiveObjectWithData:[[UICKeyChainStore keyChainStoreWithService:@"com.metodowhite"] dataForKey:@"userAccount"]];
+    if([[UICKeyChainStore keyChainStoreWithService:_keychainServiceName] stringForKey:@"uuid"] != nil) {
+        self.uuid = [[UICKeyChainStore keyChainStoreWithService:_keychainServiceName] stringForKey:@"uuid"];
+        self.userAccountInKeyChain = [NSKeyedUnarchiver unarchiveObjectWithData:[[UICKeyChainStore keyChainStoreWithService:_keychainServiceName] dataForKey:@"userAccount"]];
         return YES;
     } else {
         return NO;
@@ -92,7 +140,7 @@
 }
 
 - (void)saveUserInKeyChain {
-    UICKeyChainStore *store = [UICKeyChainStore keyChainStoreWithService:@"com.metodowhite"];
+    UICKeyChainStore *store = [UICKeyChainStore keyChainStoreWithService:_keychainServiceName];
     self.uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     [store setString:_uuid forKey:@"uuid"];
     
@@ -104,6 +152,7 @@
 }
 
 #pragma mark - Parse Methods
+#warning Parse must be configured in AppDelegate.m
 
 - (void)loginParseUser {
     PFUser *currentUser = [PFUser currentUser];
@@ -127,7 +176,6 @@
     }];
 }
 
-
 - (void)registerParseUser {
     PFUser *newParseUser = [PFUser user];
     newParseUser.username = _userAccountInKeyChain.username;
@@ -147,7 +195,6 @@
 #pragma mark - Alert Utils
 
 - (void)throwAlertWithTitle:(NSString *)title message:(NSString *)msg {
-    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
                                                     message:msg
                                                    delegate:nil
@@ -156,10 +203,7 @@
     [alert show];
 }
 
-
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
     if (buttonIndex == 0) {
         // User Canceled
         return;
@@ -170,5 +214,4 @@
     [self saveUserInKeyChain];
 }
 
-//}
 @end
