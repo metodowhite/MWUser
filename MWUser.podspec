@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "MWUser"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "A short description of MWUser."
 
   s.description  = <<-DESC
@@ -43,7 +43,8 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = 'MIT (example)'
+  s.license      = 'MIT'
+  #s.license      = 'MIT (example)'
   #s.license      = { :type => 'MIT', :file => 'FILE_LICENSE' }
 
 
@@ -79,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/metodowhite/MWUser.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/metodowhite/MWUser.git", :tag => "0.0.2" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

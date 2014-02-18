@@ -2,7 +2,7 @@
 //  MWAppDelegate.m
 //  MWUserExample
 //
-//  Created by Cristian Díaz on 17/02/14.
+//  Created by Cristian Díaz on 18/02/14.
 //  Copyright (c) 2014 metodowhite. All rights reserved.
 //
 
