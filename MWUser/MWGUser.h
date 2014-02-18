@@ -6,16 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface MWGUser: NSObject<UIAlertViewDelegate>
-
-@property (strong, nonatomic)RACSignal *loggingSignal;
-
--(void)loginRegisterViaTwitter;
--(void)loginRegisterViafacebook;
-
-+(id)sharedMWGUser;
-
-
+@interface MWGUser: NSObject
 @end

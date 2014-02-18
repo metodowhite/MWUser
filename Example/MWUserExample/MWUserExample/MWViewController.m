@@ -7,6 +7,7 @@
 //
 
 #import "MWViewController.h"
+#import <MWUser/MWUserManager.h>
 
 @interface MWViewController ()
 
@@ -18,6 +19,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    //	[[MWUserManager shared] loginRegisterViaTwitter];
+    //	[[MWUserManager shared] loginRegisterViaTwitter];
 }
 
 - (void)didReceiveMemoryWarning
