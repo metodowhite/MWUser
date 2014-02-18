@@ -1,6 +1,6 @@
 PODS:
   - Facebook-iOS-SDK (3.12.0)
-  - MWUser (0.0.1):
+  - MWUser (0.0.2):
     - Parse (~> 1.2.18)
     - ReactiveCocoa (~> 2.2.3)
     - UICKeyChainStore (~> 1.0.4)
@@ -23,7 +23,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Facebook-iOS-SDK: c09f7d80db5c48170ff834bc03ebe774c49d1f5b
-  MWUser: 12d8507026694b7eca845c8d72c974a2a16ea487
+  MWUser: bd1ae2cc0801a6d1c6b8c69f10d4172a491c1e17
   Parse: 6dd57f2af9f89dc6facc755cec4e96f8b739b1fb
   ReactiveCocoa: b3cb6ebd50f1a0f2e39c6fd7ce3c428b6efcb22b
   UICKeyChainStore: b42c6252b8bfd7fbf6326668467572b6b231e11a

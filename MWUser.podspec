@@ -24,12 +24,10 @@ Pod::Spec.new do |s|
   s.summary      = "A short description of MWUser."
 
   s.description  = <<-DESC
-                   A longer description of MWUser in Markdown format.
-
-                   * Think: Why did you write this? What is the focus? What does it do?
-                   * CocoaPods will be using this to generate tags, and improve search results.
-                   * Try to keep it short, snappy and to the point.
-                   * Finally, don't worry about the indent, CocoaPods strips it!
+                   MWUser
+                    ======
+                    ### Simple login/register
+                    MWUser integrates ACAccount & Parse. Optional ReactiveCocoa alerts & Keychain persistent store.
                    DESC
 
   s.homepage     = "http://metodwhite.com/MWUser"
